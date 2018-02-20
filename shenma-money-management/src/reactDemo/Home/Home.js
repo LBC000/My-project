@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
-import './css/index.css'
+import './css/home.css'
+import ScrollBar from './scroll_bar/scroll_bar'
 
 class Home extends Component{
     constructor(){
@@ -13,7 +14,7 @@ class Home extends Component{
 
         return(
             <div id='home_box'>
-                789
+                <ScrollBar/>
             </div>
         )
     }
