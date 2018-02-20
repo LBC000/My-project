@@ -1,0 +1,6 @@
+1、使用rem布局，用淘宝的lib-flexible。用less来写css
+2、使用定时器时会使用回调函数，要注意存一个let _this=this;
+3、react定时器问题
+        在componentDidMount设置setTimeout，然后在componentWillUnmount取消
+            // 如果存在this.timer，则使用clearTimeout清空。
+            componentWillUnmount(){this.timer && clearTimeout(this.timer)};
