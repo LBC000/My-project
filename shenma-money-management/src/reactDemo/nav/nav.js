@@ -1,4 +1,9 @@
 import React,{Component} from 'react';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom'
 import './css/nav.css'
 
 //li结构
@@ -10,21 +15,25 @@ class List extends Component{
         }
     }
 
+    //点击事件
     TouchStart=()=>{
         let {cActive,i}=this.props;
         cActive(i)
     };
 
     render(){
-        let {text,navImg,i,active}=this.props;
+        let {text,navImg,i,active,Route}=this.props;
+        console.log(Route)
         let classN=i==active?'active':'';
         let imgClass=i==active?'zImg':'';
         return(
             <li className={classN}
                 onTouchStart={this.TouchStart}
             >
-                <img className={imgClass} src={require(`./img/${navImg}`)}/>
-                <p>{text}</p>
+                <Link to={'/'+Route}>
+                    <img className={imgClass} src={require(`./img/${navImg}`)}/>
+                    <p>{text}</p>
+                </Link>
             </li>
         )
     }
@@ -38,19 +47,23 @@ class Nav extends Component{
             ListArr:[
                 {
                     text:'首页',
-                    img:'nav1.jpg'
+                    img:'nav1.jpg',
+                    Route:'Home'
                 },
                 {
                     text:'投资',
-                    img:'nav2.jpg'
+                    img:'nav2.jpg',
+                    Route:'Invest'
                 },
                 {
                     text:'发现',
-                    img:'nav3.jpg'
+                    img:'nav3.jpg',
+                    Route:'Find'
                 },
                 {
                     text:'我的财富',
-                    img:'nav4.jpg'
+                    img:'nav4.jpg',
+                    Route:'Me'
                 }
             ],
             active:0
@@ -73,7 +86,8 @@ class Nav extends Component{
                 navImg:e.img,
                 i,
                 active,
-                cActive:this.cActive
+                cActive:this.cActive,
+                Route:e.Route
             };
             return <List {...obj}/>
         });

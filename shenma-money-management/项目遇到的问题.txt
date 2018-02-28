@@ -4,3 +4,5 @@
         在componentDidMount设置setTimeout，然后在componentWillUnmount取消。
             // 如果存在this.timer，则使用clearTimeout清空。
             componentWillUnmount(){this.timer && clearTimeout(this.timer)}; 
+4、根目录刷新时加载开始页广告(也就是进入app的时候)。直接输入/Home不加载广告
+解决

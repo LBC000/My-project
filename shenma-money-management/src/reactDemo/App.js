@@ -4,7 +4,7 @@ import '../css/mobile_reset.css'
 import '../css/index.css'
 import '../js/lib-flexible'
 
-import Start from './Start page/start-page'
+import Entrance from './Entrance/entrance'
 class App extends Component{
     constructor(){
         super();
@@ -15,7 +15,9 @@ class App extends Component{
 
     render(){
         return(
-            <Start/>
+            <div>
+                <Entrance/>
+            </div>
         )
     }
 }

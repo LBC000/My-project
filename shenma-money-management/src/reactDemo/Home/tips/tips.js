@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
-import './ScrollBar.css'
+import './tips.css'
 
-class ScrollBar extends Component{
+class Tips extends Component{
     constructor(){
         super();
         this.state={
@@ -13,8 +13,10 @@ class ScrollBar extends Component{
     render(){
 
         return(
-            <div id='scroll_bar'>轮播图</div>
+            <div id='tips'>
+                提示
+            </div>
         )
     }
 }
-export default ScrollBar
+export default Tips
