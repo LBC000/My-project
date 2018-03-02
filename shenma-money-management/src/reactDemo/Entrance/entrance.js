@@ -1,9 +1,5 @@
-import React,{Component} from 'react';
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 import Start from '../Start page/start-page'
 import Home from '../Home/Home'
@@ -12,17 +8,15 @@ import Find from '../Find/Find'
 import Me from '../Me/Me'
 import Nav from '../nav/nav'
 
-class Entrance extends Component{
-    constructor(){
+class Entrance extends Component {
+    constructor() {
         super();
-        this.state={
-
-        }
+        this.state = {}
     }
 
-    render(){
+    render() {
 
-        return(
+        return (
             <div>
                 <Route exact path='/' component={Start}/>
                 <Route path="/Home" component={Home}/>

@@ -1,18 +1,15 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import './tips.css'
 
-class Tips extends Component{
-    constructor(){
+class Tips extends Component {
+    constructor() {
         super();
-        this.state={
-
-        }
+        this.state = {}
     }
 
+    render() {
 
-    render(){
-
-        return(
+        return (
             <div id='tips'>
                 提示
             </div>

@@ -1,11 +1,13 @@
+//640*1136设计稿，根字体32px
 import React, {Component} from 'react';
+import '../css/base.css'
+import '../js/lib-flexible'
 
 class App extends Component {
   render() {
     return (
-      <div>
-
-        234
+      <div id="app">
+        456
       </div>
     );
   }

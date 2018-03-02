@@ -1,17 +1,15 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import '../../css/window.css'
 
-class Find extends Component{
-    constructor(){
+class Find extends Component {
+    constructor() {
         super();
-        this.state={
-
-        }
+        this.state = {}
     }
 
-    render(){
+    render() {
 
-        return(
+        return (
             <div className='home_box'>
                 <ul>
                     <li>这是Find1</li>
