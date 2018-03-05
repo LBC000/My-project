@@ -1,0 +1,29 @@
+#nav {
+  height: 1.25rem;
+  width: 100%;
+  background-color: #fff;
+  font-size: .46875rem;
+  border-bottom: .015625rem solid #ccc;
+  box-sizing: border-box;
+  position: fixed;
+  top: 2rem;
+  left: 0;
+}
+#nav li {
+  float: left;
+  width: 33.33333333%;
+  text-align: center;
+}
+#nav div {
+  height: 1.25rem;
+  color: #333;
+  display: inline-block;
+  box-sizing: border-box;
+}
+#nav .active {
+  border-bottom: .0625rem solid #d33a31;
+  color: #d33a31;
+}
+#nav a {
+  line-height: 1.25rem;
+}

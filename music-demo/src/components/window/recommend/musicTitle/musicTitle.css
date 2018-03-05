@@ -1,0 +1,19 @@
+.title {
+  height: 1.671875rem;
+  position: relative;
+}
+.title i {
+  display: inline-block;
+  width: .0625rem;
+  height: .5rem;
+  background-color: #d33a31;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -40%);
+}
+.title span {
+  font-size: .5rem;
+  line-height: 1.796875rem;
+  margin-left: .25rem;
+  color: #333;
+}

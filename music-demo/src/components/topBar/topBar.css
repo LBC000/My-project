@@ -1,6 +1,35 @@
 #topBar {
   height: 2rem;
-  background: red;
+  width: 100%;
+  background: #d43c33;
+  border-top: .015625rem solid #942a23;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
-height: 8.875rem;
+#topBar #log {
+  float: left;
+  margin: 0.5625rem 0 0 0.296875rem;
+}
+#topBar #log img {
+  width: 4.4375rem;
+  height: 0.78125rem;
+  display: block;
+}
+#topBar #down {
+  float: right;
+  width: 2.46875rem;
+  height: 0.90625rem;
+  border: .015625rem solid #fff;
+  border-radius: .78125rem;
+  margin: .4375rem .3125rem;
+  position: relative;
+}
+#topBar #down a {
+  color: #fff;
+  font-size: .46875rem;
+  position: absolute;
+  left: .265625rem;
+  top: .109375rem;
 }

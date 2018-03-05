@@ -1,0 +1,32 @@
+@tbar_h: 2rem;
+#nav{
+    @nav_h:1.25rem;
+    height:@nav_h;
+    width: 100%;
+    background-color: #fff;
+    font-size: .46875rem;
+    border-bottom: .015625rem solid #ccc;
+    box-sizing: border-box;
+    position:fixed;
+    //固定定位，空出广告栏位置
+    top:@tbar_h;
+    left:0;
+    li{
+        float: left;
+        width: 100/3%;
+        text-align: center;
+    }
+    div{
+        height: @nav_h;
+        color: #333;
+        display: inline-block;
+        box-sizing: border-box;
+    }
+    .active{
+        border-bottom: .0625rem solid #d33a31;
+        color: #d33a31;
+    }
+    a{
+        line-height: @nav_h;
+    }
+}

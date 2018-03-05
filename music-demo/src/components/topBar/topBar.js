@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import './topBar.css'
 
 class TopBar extends Component {
@@ -9,7 +10,12 @@ class TopBar extends Component {
     render() { 
         return ( 
             <div id="topBar">
-                567
+                <div id="log">
+                    <img src={require('../../img/topLog.png')} />
+                </div>
+                <div id="down">
+                    <Link to='/'>下载APP</Link>
+                </div>
             </div>
 
          )

@@ -1,0 +1,13 @@
+.hideScrollBar {
+  width: 100%;
+  overflow: hidden;
+}
+.hideScrollBar>ul {
+  width: 10.9375rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 14.5rem;
+}
+.hideScrollBar li {
+  width: 10rem;
+}

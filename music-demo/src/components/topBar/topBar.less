@@ -1,4 +1,40 @@
 #topBar{
-    height: 2rem;
-    background: red;
+    @tbar_h: 2rem;
+    height: @tbar_h;
+    width: 100%;
+    background: #d43c33;
+    border-top: .015625rem solid #942a23;
+    box-sizing: border-box;
+    //固定定位
+    position:fixed;
+    top:0;
+    left:0;
+    #log{
+        @log_h:.78125rem;
+        float: left;
+        margin: (@tbar_h - @log_h - .09375rem)/2 0 0 .296875rem;
+        img{
+            width: 4.4375rem;
+            height: @log_h;
+            display: block;
+        }
+    }
+    #down{
+        @down_h:.90625rem;
+        @down_w:2.46875rem;
+        float: right;
+        width: @down_w;
+        height: @down_h;
+        border: .015625rem solid #fff;
+        border-radius: .78125rem;
+        margin: .4375rem .3125rem;
+        position: relative;
+        a{
+            color: #fff;
+            font-size: .46875rem;
+            position: absolute;
+            left: .265625rem;
+            top: .109375rem;
+        }
+    }
 }
