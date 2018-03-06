@@ -6,3 +6,7 @@
         在componentDidMount设置setTimeout，然后在componentWillUnmount取消。
             // 如果存在this.timer，则使用clearTimeout清空。
             componentWillUnmount(){this.timer && clearTimeout(this.timer)}; 
+4、可上下滚动，隐藏滚动条
+5、在同一个组件下创建木偶组件
+6、头部固定定位
+7、title组件复用

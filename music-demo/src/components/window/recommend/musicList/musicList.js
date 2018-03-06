@@ -16,7 +16,6 @@ class MusicList extends Component {
             <div id="musicList">
                 <MusicTitle />
                 <RecoList />
-                <NewMusic /> 
             </div>
          )
     }

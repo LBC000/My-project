@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-import './newMusicList.css'
+import './list.css'
 
-class NewMusicList extends Component {
+class List extends Component {
     constructor(props) {
         super(props);
           
@@ -44,10 +44,8 @@ class NewMusicList extends Component {
             return <MList {...obj}/>
         })
         return ( 
-            <ul id="newMusicList">
-                <li>
-                    {list}
-                </li>
+            <ul className="MusicList">
+                {list}
             </ul>
          )
     }
@@ -58,16 +56,16 @@ class MList extends Component {
     render() { 
         let {musicnName,details}=this.props;
         return ( 
-            <div>
+            <li>
                 <p>{musicnName}</p>
                 <span>
                     <i></i>
                     {details}          {/*详情*/}
                 </span>
                 <i id="newM_Playicon"></i>
-            </div>
+            </li>
          )
     }
 }
 
-export default NewMusicList;
+export default List;

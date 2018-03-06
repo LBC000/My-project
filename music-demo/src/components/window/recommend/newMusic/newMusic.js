@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../musicTitle/musicTitle.css'
 
 import MusicTitle from '../musicTitle/musicTitle';
-import NewMusicList from './newMusicList/newMusicList';
+import List from '../../list/list';
 
 class NewMusic extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class NewMusic extends Component {
         return ( 
             <div>
                 <MusicTitle /> 
-                <NewMusicList />
+                <List />
             </div>
          )
     }

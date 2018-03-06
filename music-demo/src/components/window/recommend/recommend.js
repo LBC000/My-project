@@ -4,6 +4,8 @@ import './recommend.css'
 import '../../../css/hide_scroll_bar.css'
 
 import MusicList from '../recommend/musicList/musicList';
+import NewMusic from '../recommend/newMusic/newMusic';
+import RecoFooter from '../recommend/recoFooter/recoFooter';
 
 class Recommend extends Component {
     constructor(props) {
@@ -15,6 +17,8 @@ class Recommend extends Component {
             <div id="recommend" className="hideScrollBar">
                 <ul>
                     <li><MusicList /></li>
+                    <li><NewMusic /></li>
+                    <li><RecoFooter /></li>
                 </ul>
             </div>
          )
