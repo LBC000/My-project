@@ -9,25 +9,30 @@ import Hot from '../window/hot/hot';
 class Nav extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+            navData:{
+                btn1:'推荐音乐',
+                btn2:'热歌榜',
+                btn3:'搜索'
+            }
+         }
     }
     render() { 
+        let {navData:{btn1,btn2,btn3}}=this.state;
         return ( 
             <div>
                 <ul id="nav">
                     <li>
-                        <div className="active"><Link to='/Recommend'>推荐音乐</Link></div>
+                        <div className="active"><Link to='/Recommend'>{btn1}</Link></div>
                     </li>
                     <li>
-                        <div className="active"><Link to='/Hot'>热歌榜</Link></div>
+                        <div className="active"><Link to='/Hot'>{btn2}</Link></div>
                     </li>
                     <li>
-                        <div ><Link to='/'>搜索</Link></div>
+                        <div ><Link to='/'>{btn3}</Link></div>
                     </li>
                 </ul>
-                <Route path='/' component={Window} />
             </div>
-            
          )
     }
 }

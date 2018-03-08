@@ -8,37 +8,37 @@ class RecoList extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            recoListImg:[
+            recoListData:[
                 {
-                    img:'18533367999267309.webp',
+                    img:require('../../../../../img/18533367999267309.webp'),
                     text:'华研国际热门音乐精选50首'
                 },
                 {
-                    img:'18572950418591275.webp',
+                    img:require('../../../../../img/18572950418591275.webp'),
                     text:'【古风】和声即情感，舍此无他'
                 },
                 {
-                    img:'109951163081971963.webp',
+                    img:require('../../../../../img/109951163081971963.webp'),
                     text:'诗和故事：我弹一曲思念，你...'
                 },
                 {
-                    img:'109951163097632993.webp',
+                    img:require('../../../../../img/109951163097632993.webp'),
                     text:'2017国际古典音乐大奖提...'
                 },
                 {
-                    img:'109951163115144091.webp',
+                    img:require('../../../../../img/109951163115144091.webp'),
                     text:'2017年度最热新歌TOP100'
                 },
                 {
-                    img:'109951163168289079.webp',
+                    img:require('../../../../../img/109951163168289079.webp'),
                     text:'【神秘组织】装X常用BGM'
                 }
             ]
          }
     }
     render() { 
-        let {recoListImg}=this.state;
-        let list=recoListImg.map((e,i)=>{
+        let {recoListData}=this.state;
+        let list=recoListData.map((e,i)=>{
             let obj={
                 key:i,
                 url:e.img,
@@ -61,7 +61,7 @@ class List extends Component {
         let {url,i,text}=this.props;
         return ( 
             <li className="mgr">
-                <img src={require('../../../../../img/'+url)} alt=""/>
+                <img src={url} alt=""/>
                 <p>{text}</p>
             </li>
          )

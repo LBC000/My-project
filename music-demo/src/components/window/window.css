@@ -1,6 +1,5 @@
 #window {
-  margin-top: 3.25rem;
-  height: 14.5rem;
   width: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

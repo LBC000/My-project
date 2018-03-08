@@ -5,13 +5,18 @@ import './recoFooter.css'
 class RecoFooter extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+            footerDate:{
+                footerLogo:require('../../../../img/footerLogo.png')
+            }
+         }
     }
     render() { 
+        let {footerDate:{footerLogo}}=this.state;
         return ( 
             <div id="recoFooter">
                 <div id="footer_bg">
-                    <img src={require('../../../../img/footerLogo.png')} alt=""/>
+                    <img src={footerLogo} alt=""/>
                 </div>
                 <Link to="/"><div className="donw">打开APP，发现更多好音乐></div></Link>
                 <div className="copyright"><span>XX公司版权所有1997-2017 杭州XX科技有限公司运营</span></div>

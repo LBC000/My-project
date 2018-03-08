@@ -5,10 +5,8 @@ import './list.css'
 class List extends Component {
     constructor(props) {
         super(props);
-          
-  
         this.state = { 
-            newMlist:[
+            musicData:[
                 {
                     musicnName:'Alive',
                     details:'Do As Infinity - ALIVE'
@@ -33,9 +31,8 @@ class List extends Component {
          }
     }
     render() { 
-        let {newMlist}=this.state;
-        console.log(newMlist)
-        let list=newMlist.map((e,i)=>{
+        let {musicData}=this.state;
+        let list=musicData.map((e,i)=>{
             let obj={
                 key:i,
                 musicnName:e.musicnName,
@@ -56,14 +53,16 @@ class MList extends Component {
     render() { 
         let {musicnName,details}=this.props;
         return ( 
-            <li>
-                <p>{musicnName}</p>
-                <span>
-                    <i></i>
-                    {details}          {/*详情*/}
-                </span>
-                <i id="newM_Playicon"></i>
-            </li>
+            <Link to="/m/play">
+                <li>
+                    <p>{musicnName}</p>
+                    <span>
+                        <i></i>
+                        {details}          {/*详情*/}
+                    </span>
+                    <i id="newM_Playicon"></i>
+                </li>
+            </Link>
          )
     }
 }

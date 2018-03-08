@@ -7,6 +7,24 @@
             // 如果存在this.timer，则使用clearTimeout清空。
             componentWillUnmount(){this.timer && clearTimeout(this.timer)}; 
 4、可上下滚动，隐藏滚动条
-5、在同一个组件下创建木偶组件
+5、在同一个组件下创建木偶组件，木偶组件state和父组件state的关系
 6、头部固定定位
 7、title组件复用
+8、本地和网络的图片都可以统一使用以下格式。**音频也要require包一下**
+	this.state = { 
+            footerDate:{
+                // footerLogo:require('../../../../img/footerLogo.png')
+                footerLogo:'http://www.wookmark.com/images/original/666618_wookmark.jpg'
+            }
+         }
+	let {footerDate:{footerLogo}}=this.state;
+	<img src={require(footerLogo)} alt=""/>
+
+require里不能放变量。以下格式报错
+	this.state = { 
+            footerDate:{
+                footerLogo:'../../../../img/footerLogo.png'
+            }
+         }
+	let {footerDate:{footerLogo}}=this.state;
+	<img src={require(footerLogo)} alt=""/>

@@ -14,7 +14,7 @@ class Recommend extends Component {
     }
     render() { 
         return ( 
-            <div id="recommend" className="hideScrollBar">
+            <div id="recommend">
                 <ul>
                     <li><MusicList /></li>
                     <li><NewMusic /></li>

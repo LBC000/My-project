@@ -5,16 +5,22 @@ import './topBar.css'
 class TopBar extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+            topBarData:{
+                log:require('../../img/topLog.png'),
+                downText:'下载APP'
+            }
+         }
     }
     render() { 
+        let {topBarData:{log,downText}}=this.state;
         return ( 
             <div id="topBar">
                 <div id="log">
-                    <img src={require('../../img/topLog.png')} />
+                    <img src={log} />
                 </div>
                 <div id="down">
-                    <Link to='/'>下载APP</Link>
+                    <Link to='/'>{downText}</Link>
                 </div>
             </div>
 
