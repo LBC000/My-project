@@ -1,3 +1,6 @@
-#playMusic {
+#playPage {
   z-index: -1;
+}
+#playPage .title span {
+  color: #fff;
 }

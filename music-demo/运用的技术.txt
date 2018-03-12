@@ -10,6 +10,7 @@
 5、在同一个组件下创建木偶组件，木偶组件state和父组件state的关系
 6、头部固定定位
 7、title组件复用
+
 8、本地和网络的图片都可以统一使用以下格式。**音频也要require包一下**
 	this.state = { 
             footerDate:{
@@ -28,3 +29,18 @@ require里不能放变量。以下格式报错
          }
 	let {footerDate:{footerLogo}}=this.state;
 	<img src={require(footerLogo)} alt=""/>
+
+9、Link to 传值。需要配合Route匹配使用。
+<li>
+    <Link to={ 
+        { 
+            pathname:"/jump", 
+            hash:'#ahash',  
+            query:{foo: 'foo', boo:'boo'},  
+            state:{data:'hello'}   
+        } 
+    } activeClassName="GlobalNav-active">点击跳转
+    </Link> 
+</li>
+接收
+    匹配的路由会成一个对象，对象里会有数据

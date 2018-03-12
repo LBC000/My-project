@@ -27,16 +27,7 @@ class App extends Component {
         let obj={
             styles:{
                 box:{
-                    height:'17.75rem',
-                },
-                bg:{
-                    width: '10rem',
-                    height: '17.75rem',
-                    position: 'absolute',
-                    zIndex: '-1',
-                    filter: 'blur(40px)',
-                    background:`url(${(img)}) no-repeat`,
-                    backgroundSize:'10rem 17.75rem',
+                    height:'100%',
                 }
             },
             component:<PlayPage />
@@ -44,11 +35,10 @@ class App extends Component {
         return (
             <div id="app">
                 <Switch>
-                    {/* 把PlayMusic页面放在上面。只要匹配了一个就不会往下执行 */}
+                    {/* 把PlayPage页面放在上面。只要匹配了一个就不会往下执行 */}
                     <Route path='/m/play' render={(math)=>{
                         return <Window {...obj} />
                     }} />
-                    {/* <Route path='/m/play' component={PlayMusic} />} */}
                     <Route path='/' component={Home} />
                 </Switch>
             </div>

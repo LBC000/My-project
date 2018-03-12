@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import '../musicTitle/musicTitle.css'
+import '../newMusic/newMusic.css'
 
-import MusicTitle from '../musicTitle/musicTitle';
+import MusicTitle from '../../../musicTitle/musicTitle';
 import List from '../../../list/list';
 
 class NewMusic extends Component {

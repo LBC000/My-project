@@ -1,6 +1,7 @@
 .title {
   height: 1.671875rem;
   position: relative;
+  color: #333;
 }
 .title i {
   display: inline-block;
@@ -15,5 +16,4 @@
   font-size: .5rem;
   line-height: 1.796875rem;
   margin-left: .25rem;
-  color: #333;
 }

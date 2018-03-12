@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Link,Switch} from 'react-router-dom'
-import './/playPage.css'
+import './playPage.css'
 
 import List from '../list/list';
+import MusicTitle from '../musicTitle/musicTitle';
 import Open_down from '../open_down/open_down';
 import PlayMusic from '../playMusic/playMusic';
 
@@ -11,50 +12,49 @@ class PlayPage extends Component {
         super(props);
         this.state = { 
             play_pause:true,
-            musicData:{
-                // url:'http://music.163.com/song/media/outer/url?id=451703096.mp3'
-                url:require('../../music_file/111.mp3'),
-                img:require('../../img/109951163081971963.webp')
-            }
          }
     }
 
-    playClick=()=>{
-        let myAudio=this.refs.myAudio;
-        let {play_pause}=this.state;
-        
-        if(play_pause){
-            myAudio.play();
-        }else{
-            myAudio.pause();
-        }
-        this.setState({ 
-            play_pause:!play_pause
-        });
-    }
-
-    render() {
-        let {musicData:{url,img}}=this.state;
-        let {height}=this.props;
+    render(match) {
+        let h=document.documentElement.clientHeight*2/64;
+        console.log(this.props)
         return ( 
-            <div id="playMusic">
-                <PlayMusic />
-                <audio 
-                    // controls="controls"
-                    ref='myAudio'
-                >
-                    <source src={url}/>
-                </audio>
-                <button
-                    onTouchStart={this.playClick}
-                >播放/暂停</button>
-                <Open_down />
-                <List />
-                <List />
-                <List />
-                <List />
-                <List />
-            </div>
+            <Route path='/m/play/playPage/' render={(url)=>{
+                //解构Link to传过来的数据
+                let {img}=url.location.state;
+                //打开、下载背景图片 
+                let obj={
+                    bg:{
+                        width: '10rem',
+                        height: `${h}rem`,
+                        filter: 'blur(10px) sepia(50%)',
+                        background:`url(${(img)}) no-repeat`,
+                        backgroundSize:`10rem ${h}rem`,
+                        position: 'absolute',
+                        bottom: '0',
+                    }
+                } 
+                //背景图片
+                let boxBg={
+                        width: '10rem',
+                        height: `${h}rem`,
+                        filter: 'blur(10px) sepia(50%)',
+                        background:`url(${(img)}) no-repeat`,
+                        backgroundSize:`10rem ${h}rem`,
+                        position: 'absolute',
+                        bottom: '0',
+                        zIndex: '-1'
+                    }
+
+                return (
+                    <div id="playPage">
+                        <div style={boxBg}></div>
+                        <PlayMusic />
+                        <MusicTitle />
+                        <Open_down {...obj}/>
+                    </div>
+                )
+            }} />
          )
     }
 }

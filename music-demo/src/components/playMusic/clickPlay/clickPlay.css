@@ -1,0 +1,48 @@
+.clickPlayBox {
+  position: relative;
+}
+#clickPlay {
+  width: 7.75rem;
+  height: 7.75rem;
+  background-size: contain;
+  position: relative;
+  margin: 0 auto;
+}
+#clickPlay .musicImg {
+  width: 4.6875rem;
+  height: 4.6875rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#clickPlay .disc {
+  width: 7.75rem;
+  height: 7.75rem;
+  position: absolute;
+  background-image: url('../../../img/disc.png');
+  background-size: contain;
+  z-index: 1;
+}
+#clickPlay .disc_default {
+  width: 7rem;
+  height: 7rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url('../../../img/disc_default.png');
+  background-size: contain;
+  border-radius: 5.78rem;
+}
+.clickPlayIcon {
+  width: 1.5625rem;
+  height: 1.5625rem;
+  background-image: url('../../../img/bf.png');
+  background-size: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}

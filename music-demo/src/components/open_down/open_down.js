@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {BrowserRouter as Router, Route, Link,Switch} from 'react-router-dom'
 
 import './open_down.css'
 
@@ -9,13 +8,16 @@ class Open_down extends Component {
         this.state = {  }
     }
     render() { 
-        // let styles={
-        //     open_down:
-        // }
+        let {bg}=this.props;
+        console.log(bg)
         return ( 
-            <div id="open_down">
-                233
+            <div id="open_down_box">
+                <div id="open_down">
+                    233
+                </div>
+                <div style={bg} id="open_down_bg"></div>  {/* 背景图在底部，和大背景融合 */}
             </div>
+            
          )
     }
 }
