@@ -1,5 +1,7 @@
-#window {
-  width: 100%;
+.window {
+  overflow: hidden;
+}
+.window_box {
   overflow-y: auto;
   overflow-x: hidden;
 }

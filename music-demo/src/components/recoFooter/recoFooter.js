@@ -3,18 +3,11 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import './recoFooter.css'
 
 class RecoFooter extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            footerDate:{
-                footerLogo:require('../../../../img/footerLogo.png')
-            }
-         }
-    }
     render() { 
-        let {footerDate:{footerLogo}}=this.state;
+        let {footerData:{footerLogo,bgImg}}=this.props;
+        console.log(bgImg)
         return ( 
-            <div id="recoFooter">
+            <div id="recoFooter" style={{ backgroundImage: `url(${bgImg})` }} >
                 <div id="footer_bg">
                     <img src={footerLogo} alt=""/>
                 </div>

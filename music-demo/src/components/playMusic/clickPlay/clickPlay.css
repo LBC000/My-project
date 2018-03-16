@@ -33,7 +33,7 @@
   transform: translate(-50%, -50%);
   background-image: url('../../../img/disc_default.png');
   background-size: contain;
-  border-radius: 5.78rem;
+  border-radius: 5.5rem;
 }
 .clickPlayIcon {
   width: 1.5625rem;

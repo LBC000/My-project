@@ -5,8 +5,9 @@ import '../musicTitle/musicTitle.css'
 //标题
 class MusicTitle extends Component {
     render() { 
+        console.log(this.props)
         return ( 
-            <div className="title">
+            <div className="title" style={this.props.styles} >
                 <i></i><span>推荐歌单</span> 
             </div>
          )

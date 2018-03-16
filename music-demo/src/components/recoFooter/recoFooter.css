@@ -1,8 +1,7 @@
 #recoFooter {
   height: 5.328125rem;
-  width: 100%;
+  width: 10rem;
   float: left;
-  background-image: url('../../../../img/recommand_bg_2x.png');
   background-size: 10rem 5.328125rem;
   text-align: center;
 }

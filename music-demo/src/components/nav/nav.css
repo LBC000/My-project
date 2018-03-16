@@ -1,4 +1,4 @@
-#nav {
+.nav {
   height: 1.25rem;
   width: 100%;
   background-color: #fff;
@@ -10,21 +10,21 @@
   top: 2rem;
   left: 0;
 }
-#nav li {
+.nav li {
   float: left;
   width: 33.33333333%;
   text-align: center;
 }
-#nav div {
+.nav div {
   height: 1.25rem;
   color: #333;
   display: inline-block;
   box-sizing: border-box;
 }
-#nav .active {
+.nav .active {
   border-bottom: .0625rem solid #d33a31;
   color: #d33a31;
 }
-#nav a {
+.nav a {
   line-height: 1.25rem;
 }

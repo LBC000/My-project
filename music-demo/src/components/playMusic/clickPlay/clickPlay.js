@@ -3,71 +3,45 @@ import React, { Component } from 'react'
 import './clickPlay.css'
 
 class ClickPlay extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            musicData:{
-                // url:'http://music.163.com/song/media/outer/url?id=451703096.mp3'
-                url:require('../../../music_file/111.mp3'),
-                musicImg:require('../../../img/109951163097632993.webp')
-            },
-            num:0,
-            Onoff:true,
-         }
-    }
-
-    //播放
-    play=()=>{
-        let myAudio=this.refs.myAudio;
-        let {Onoff}=this.state;
-        
-        if(Onoff){
-            myAudio.play();
-        }else{
-            myAudio.pause();
-        }
-    }
-
-    componentDidMount() {
-        clearInterval(this.timer)
-    }
 
     //播放旋转
     clickPlay=()=>{
-        this.play()
-        let {Onoff,num}=this.state;
-        let {clickPlay,playIcon}=this.refs;      /* 获取元素 */
-
-        if(Onoff){
-            this.timer=setInterval(()=>{
-                num++
-                num%=360
-                clickPlay.style.transform=`rotate(${num}deg)`; /* 旋转元素 */
-                this.setState({
-                    num
-                })
-            },50)
-            playIcon.style.display='none';
-        }else{
-            clearInterval(this.timer)
-            playIcon.style.display='block';
-        } 
-        this.setState({
-            Onoff:!Onoff
-        }) 
+        let {whirl}=this.props; //解构父级传进来的数据
+        whirl();
+        // this.plat();
     }
 
+    //播放
+    play=(Onoff,myAudio)=>{
+        if(Onoff){
+            myAudio.pause();
+        }else{
+            myAudio.play();
+        }
+    }
+
+    // 接收到新的props或者state后，进行渲染之前调用
+    componentDidUpdate(){
+        let {playMusicData:{num,Onoff}}=this.props; //解构父级传进来的数据
+        let {clickPlay,playIcon,myAudio}=this.refs;      /* 获取元素 */
+        let display=Onoff==true?'block':'none';
+        clickPlay.style.transform=`rotate(${num}deg)`; /* 旋转元素 */
+        playIcon.style.display=`${display}`;           /* 播放图标显示隐藏 */
+        this.play(Onoff,myAudio);                      /* 播放 */
+    }
+
+
     render() { 
-        let {Onoff}=this.state;   //解构自己的数据
-        let {img,url}=this.props.url.location.state; //解构父级传进来的数据
+        let {musicUrl,img}=this.props; //解构父级传进来的数据
+        
         return ( 
-            <div className="clickPlayBox">
-                <div id="clickPlay" ref="clickPlay" onTouchStart={this.clickPlay}>
+            <div className="clickPlayBox" onTouchStart={this.clickPlay} >
+                <div id="clickPlay" ref="clickPlay">
                     <audio 
                         // controls="controls"
                         ref='myAudio'
                     >
-                        <source src={url}/>
+                        <source src={musicUrl}/>
                     </audio>
                     
                     <div className="disc"></div>

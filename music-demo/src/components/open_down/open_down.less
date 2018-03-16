@@ -1,4 +1,4 @@
-#open_down{
+.open_down{
     height: 1.859375rem;
     width: 100%;
     // background-color: #4b4339;
@@ -8,12 +8,19 @@
     bottom: 0;
     left: 0;
     z-index: 1;
+    // background-color: goldenrod;
 }
-#open_down_box{
+.open_down_box{
     height: 1.859375rem;
     width: 100%;
     overflow: hidden;
     position: fixed;
     bottom: 0;
     z-index: 1;
+}
+.open_down_bg{
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    filter: blur(20px) sepia(50%);
 }
