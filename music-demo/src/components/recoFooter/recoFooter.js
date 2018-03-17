@@ -5,7 +5,6 @@ import './recoFooter.css'
 class RecoFooter extends Component {
     render() { 
         let {footerData:{footerLogo,bgImg}}=this.props;
-        console.log(bgImg)
         return ( 
             <div id="recoFooter" style={{ backgroundImage: `url(${bgImg})` }} >
                 <div id="footer_bg">

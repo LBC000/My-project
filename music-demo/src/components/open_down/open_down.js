@@ -14,7 +14,6 @@ class Open_down extends Component {
                 <div className="open_down">
                     233
                 </div>
-                <div style={bg} className="open_down_bg"></div>  {/* 背景图在底部，和大背景融合 */}
             </div>
          )
     }

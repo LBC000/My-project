@@ -3,15 +3,40 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import './recoList.css'
 
 import MusicTitle from '../musicTitle/musicTitle';
+import Ajax from '../../js/ajax_1.0'
 
 class RecoList extends Component {
-    render() { 
-        let list=this.props.recoListData.map((e,i)=>{
-            return <List text={e.text} url={e.img} i={i} key={i} />
+    constructor(props) {
+        super(props);
+        this.state = { 
+            recoListData:null
+         };
+    }
+
+    componentDidMount(){
+        let _this = this;
+        Ajax({
+            url:'http://localhost:4000/personalized',
+            data:{
+                // limit:30
+            },
+            success:function(data){
+                _this.setState({
+                    recoListData:data
+                })
+            }
         })
+    }
+
+    render() { 
+        let {recoListData} = this.state;
+        recoListData ? recoListData.result.length = 6 :'';
+        let list= recoListData ? recoListData.result.map((e,i)=>{
+            return <List {...e} key={i} />
+        }) : '';
         return ( 
             <ul id="recoList">
-                <MusicTitle />
+                <MusicTitle {...{title:'推荐歌单'}} />
                 {list}
             </ul>
          )
@@ -21,11 +46,11 @@ class RecoList extends Component {
 //li结构组件
 class List extends Component {
     render() { 
-        let {url,i,text}=this.props;
+        let {name,picUrl}=this.props;
         return ( 
             <li className="mgr">
-                <img src={url} alt=""/>
-                <p>{text}</p>
+                <img src={picUrl} alt=""/>
+                <p>{name}</p>
             </li>
          )
     }

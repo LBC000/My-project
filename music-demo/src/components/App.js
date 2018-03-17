@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Link,Switch} from 'react-router-dom'
 import '../css/base.css'
 import '../js/lib-flexible'
+import Ajax from '../js/ajax_1.0';
 
 //主页
 import Home from './home/home';
@@ -17,11 +18,6 @@ import Hot from './hot/hot';
 
 //播放页
 import PlayPage from './playPage/playPage';
-import PlayMusic from './playMusic/playMusic';
-import ClickPlay from './playMusic/clickPlay/clickPlay';
-import Open_down from './open_down/open_down';
-import MusicTitle from './musicTitle/musicTitle';
-
 
 class App extends Component {
     constructor(props) {
@@ -149,12 +145,12 @@ class App extends Component {
 
     render() {
         let {homeData:{topBarData,navData,recoListData,newMusicData,footerData}}=this.state;
-        //html的字体大小
+        // //html的字体大小
         let htmlFontSize=getComputedStyle(document.documentElement).fontSize.replace('px','');
-        //根据手机的大小减去 头部广告+导航栏的 高度，剩下的是window窗口(隐藏滚动条)的高度
+        // //根据手机的大小减去 头部广告+导航栏的 高度，剩下的是window窗口(隐藏滚动条)的高度
         let phone_h = document.documentElement.clientHeight/htmlFontSize;
         let Home_window_h = phone_h - 3.25;
-        let PlayPage_window_h = phone_h - 1.859375;
+        // let PlayPage_window_h = phone_h - 1.859375;
 
         return (
             <div id="app">
@@ -163,7 +159,7 @@ class App extends Component {
                     <Home>
                         <TopBab topBarData={topBarData} />
                         <Nav navData={navData} clickNav={this.clickNav} />
-                        <Window styles={{window:{marginTop: '3.25rem',width:'10rem',height:`${Home_window_h}rem`}}}>
+                        <Window {...{window:{marginTop: '3.25rem',width:'10rem',height:`${Home_window_h}rem`}}}>
                             <Route exact path='/' render={()=> <Recommend recoListData={recoListData} newMusicData={newMusicData} footerData={footerData} /> } />
                             <Route path='/Recommend' render={()=> <Recommend recoListData={recoListData} newMusicData={newMusicData} footerData={footerData} /> } />
                             <Route path='/Hot' render={()=> <Hot /> } />
@@ -174,33 +170,11 @@ class App extends Component {
 
                 {/* 播放页 */}
                 <Route path="/PlayPage" render={(url)=>{
-                    // 背景图和播放专辑图用同一张图片
-                    let {playPageData:{bgImg,playMusicData,playMusicData:{musicImg}}}=this.state;
-                    let {img} = url.location.state;
-                    //窗口的宽高，和背景图
-                    let styles={
-                        window:{width:'10rem',height:`${PlayPage_window_h}rem`},
-                        bg:{width:'10rem',height:`${phone_h}rem`, background: `url(${img}) no-repeat`, backgroundSize: `10rem ${phone_h}rem` }
-                    }
+                    
                     return(
                     <PlayPage>
-                        <Window styles={styles}>
-                            <PlayMusic>
-                                <ClickPlay playMusicData={playMusicData} {...url.location.state} whirl={this.whirl} />
-                            </PlayMusic>
-                            <MusicTitle styles={ {color: '#fff'} } />
-                            <p>1</p>
-                            <p>2</p>
-                            <p>3</p>
-                            <p>4</p>
-                            <p>5</p>
-                            <p>1</p>
-                            <p>2</p>
-                            <p>3</p>
-                            <p>4</p>
-                            <p>5</p>
-                        </Window>
-                        <Open_down />
+                        {/* <Window styles={styles}> */}
+                        
                     </PlayPage>
                 )}} />
             </div>
