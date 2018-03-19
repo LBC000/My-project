@@ -33,7 +33,7 @@ class NewMusic extends Component {
         return ( 
             <div>
                 <MusicTitle {...{title:'最新音乐'}} /> 
-                <List newMusicData={this.state.NewMusicData} />
+                <List {...this.state.NewMusicData} />
             </div>
          )
     }

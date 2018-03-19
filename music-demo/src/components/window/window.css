@@ -8,6 +8,7 @@
 .box_bg {
   position: absolute;
   top: 0;
-  z-index: -1;
-  background-color: yellow;
+  z-index: -2;
+  filter: blur(15px) sepia(50%);
+  background-position: 1.5625rem;
 }

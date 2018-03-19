@@ -12,7 +12,12 @@ class Open_down extends Component {
         return ( 
             <div className="open_down_box">
                 <div className="open_down">
-                    233
+                    <div className="open_down_l op" >
+                        <span>打开</span>
+                    </div>
+                    <div className="open_down_r op" >
+                        <span>下载</span>
+                    </div>
                 </div>
             </div>
          )

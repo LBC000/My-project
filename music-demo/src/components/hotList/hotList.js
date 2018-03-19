@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-import './list.css'
+import './hotList.css'
 
-class List extends Component {
+class HotList extends Component {
     render() { 
         let {result} = this.props;
         
@@ -40,4 +40,4 @@ class MList extends Component {
     }
 }
 
-export default List;
+export default HotList;

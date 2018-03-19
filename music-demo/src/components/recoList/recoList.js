@@ -21,6 +21,7 @@ class RecoList extends Component {
                 // limit:30
             },
             success:function(data){
+                console.log(data)
                 _this.setState({
                     recoListData:data
                 })

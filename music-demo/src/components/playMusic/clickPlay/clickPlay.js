@@ -1,40 +1,49 @@
 import React, { Component } from 'react'
 
 import './clickPlay.css'
+import Ajax from '../../../js/ajax_1.0';
 
 class ClickPlay extends Component {
 
     //播放旋转
     clickPlay=()=>{
-        let {whirl}=this.props; //解构父级传进来的数据
+        let {Onoff,whirl} = this.props; //解构父级传进来的数据
+        let {myAudio,playIcon} = this.refs;      /* 获取元素 */
+
+        let display = Onoff == true ? 'none' : 'block';
+        playIcon.style.display = `${display}`;           /* 播放图标显示隐藏 */
+
         whirl();
-        // this.plat();
+        this.play();
+        console.log(567)
     }
 
     //播放
-    play=(Onoff,myAudio)=>{
+    play=()=>{
+        let {myAudio} = this.refs;      /* 获取元素 */
+        let {Onoff} = this.props; //解构父级传进来的数据
+        console.log(Onoff)
         if(Onoff){
-            myAudio.pause();
-        }else{
+            console.log(1)
             myAudio.play();
+        }else{
+            console.log('0')
+            myAudio.pause();
         }
     }
 
-    // 接收到新的props或者state后，进行渲染之前调用
-    // componentDidUpdate(){
-    //     let {playMusicData:{num,Onoff}}=this.props; //解构父级传进来的数据
-    //     let {clickPlay,playIcon,myAudio}=this.refs;      /* 获取元素 */
-    //     let display=Onoff==true?'block':'none';
-    //     clickPlay.style.transform=`rotate(${num}deg)`; /* 旋转元素 */
-    //     playIcon.style.display=`${display}`;           /* 播放图标显示隐藏 */
-    //     this.play(Onoff,myAudio);                      /* 播放 */
-    // }
+
+    //接收到新的props或者state后，进行渲染之前调用
+    componentDidUpdate(){
+        let {num,Onoff} = this.props; //解构父级传进来的数据
+        let {clickPlay} = this.refs;      /* 获取元素 */
+        clickPlay.style.transform = `rotate(${num}deg)`; /* 旋转元素 */
+    }
 
 
     render() { 
-        console.log(this.props)
         let {picUrl,id}=this.props; //解构父级传进来的数据
-        let musicUrl = `http://music.163.com/song/media/outer/url?id=${id}.mp3`
+        let musicUrl = `http://music.163.com/song/media/outer/url?id=${id}.mp3`;
         // http://music.163.com/song/media/outer/url?id=id.mp3
         
         return ( 

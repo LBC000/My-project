@@ -16,6 +16,9 @@ import Window from './window/window';
 //热歌榜
 import Hot from './hot/hot';
 
+//搜索
+import SearchPage from './searchPage/searchPage';
+
 //播放页
 import PlayPage from './playPage/playPage';
 
@@ -36,7 +39,7 @@ class App extends Component {
                         },
                         {
                             title:'搜索',
-                            path:'Search'
+                            path:'SearchPage'
                         }
                     ],
                     active:0
@@ -120,28 +123,6 @@ class App extends Component {
          });
     }
 
-    //播放页旋转
-    whirl=()=>{
-        let {playPageData:{playMusicData:{Onoff,num}}}=this.state;
-        if(Onoff){
-            this.timer=setInterval(()=>{
-                this.state.playPageData.playMusicData.num++
-                this.state.playPageData.playMusicData.num%=360
-                this.setState({
-                    playPageData:this.state.playPageData
-                }) 
-            },50)
-        }else{
-            clearInterval(this.timer)
-        } 
-        //Onoff取反
-        this.state.playPageData.playMusicData.Onoff=!Onoff;
-        this.setState({
-            playPageData:this.state.playPageData
-        }) 
-    }
-
-    
 
     render() {
         let {homeData:{topBarData,navData,recoListData,newMusicData,footerData}}=this.state;
@@ -154,29 +135,27 @@ class App extends Component {
 
         return (
             <div id="app">
-                <Route exact path='/' render={()=>{return(
-                    // 主页
-                    <Home>
-                        <TopBab topBarData={topBarData} />
-                        <Nav navData={navData} clickNav={this.clickNav} />
-                        <Window {...{window:{marginTop: '3.25rem',width:'10rem',height:`${Home_window_h}rem`}}}>
-                            <Route exact path='/' render={()=> <Recommend recoListData={recoListData} newMusicData={newMusicData} footerData={footerData} /> } />
-                            <Route path='/Recommend' render={()=> <Recommend recoListData={recoListData} newMusicData={newMusicData} footerData={footerData} /> } />
-                            <Route path='/Hot' render={()=> <Hot /> } />
-                        </Window>
-                    </Home>
-                ) 
-                }} />
+                <Switch>
+                    {/* 播放页 */}
+                    <Route path="/PlayPage/:id" component={PlayPage} />
 
-                {/* 播放页 */}
-                <Route path="/PlayPage" render={(url)=>{
-                    
-                    return(
-                    <PlayPage>
-                        {/* <Window styles={styles}> */}
-                        
-                    </PlayPage>
-                )}} />
+                    <Route path='/' render={()=>{return(
+                        // 主页
+                        <Home>
+                            <TopBab topBarData={topBarData} />
+                            <Nav navData={navData} clickNav={this.clickNav} />
+                            <Window {...{window:{marginTop: '3.25rem',width:'10rem',height:`${Home_window_h}rem`}}}>
+                                <Route exact path='/' render={()=> <Recommend recoListData={recoListData} newMusicData={newMusicData} footerData={footerData} /> } />
+                                <Route path='/Recommend' render={()=> <Recommend recoListData={recoListData} newMusicData={newMusicData} footerData={footerData} /> } />
+                                <Route path='/Hot' component={Hot} />
+                                <Route path='/SearchPage' component={SearchPage} />
+                            </Window>
+                        </Home>
+                    ) 
+                    }} />
+                </Switch>
+                
+                
             </div>
         );
     }

@@ -4,3 +4,8 @@
 #playPage .title span {
   color: #fff;
 }
+.playPage_cover {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}

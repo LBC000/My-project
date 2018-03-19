@@ -51,3 +51,7 @@ require里不能放变量。以下格式报错
 </li>
 接收
     匹配的路由会成一个对象，对象里会有数据
+
+10、
+不要盲目相信网上的教程把请求数据放在componentDidMount里，componentDidMount是要渲染两次的。
+    componentWillMount拿到数据后只渲染一次

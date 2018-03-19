@@ -8,6 +8,9 @@
     bottom: 0;
     left: 0;
     z-index: 1;
+    border-bottom: .015625rem solid #312c25;
+    padding: .328125rem;
+    box-sizing: border-box;
     // background-color: goldenrod;
 }
 .open_down_box{
@@ -23,4 +26,29 @@
     top: 0;
     z-index: -1;
     // filter: blur(20px) sepia(50%);
+}
+
+.op{
+    width: 4.453125rem;
+    height: 1.1875rem;
+    border: .015625rem solid #d33a31;
+    border-radius: .78125rem;
+    font-size: .5625rem;
+    span{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+}
+.open_down_l{
+    position: relative;
+    float: left;
+    color: #d33a31;
+}
+.open_down_r{
+    position: relative;
+    float: right;
+    color: #fff;
+    background: #d33a31;
 }

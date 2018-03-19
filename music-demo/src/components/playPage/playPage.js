@@ -8,19 +8,43 @@ import PlayMusic from '../playMusic/playMusic';
 import MusicTitle from '../musicTitle/musicTitle';
 import Open_down from '../open_down/open_down';
 import ClickPlay from '../playMusic/clickPlay/clickPlay';
+import Comment from '../comment/comment';
 
 class PlayPage extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            pageAl:null,
-            play_pause:true,
+            pageData:'',
+            num:0,
+            Onoff:true,
+            id:props.match.params.id
          }
     }
 
-    componentDidMount(){
+    //播放页旋转
+    whirl=()=>{
+        let {Onoff,num}=this.state;
+        if(Onoff){
+            this.timer=setInterval(()=>{
+                num++
+                num%=360
+                this.setState({
+                    num
+                }) 
+            },50)
+        }else{
+            clearInterval(this.timer)
+        } 
+        //Onoff取反
+        this.setState({
+            Onoff:!Onoff
+        }) 
+    }
+
+    //获取数据
+    componentWillMount(){
         let _this = this;
-        let id = 281951;
+        let id = this.state.id;
         Ajax({
             url:`http://localhost:4000/song/detail?ids=${id}`,
             data:{
@@ -28,11 +52,10 @@ class PlayPage extends Component {
             },
             success:function(data){
                 _this.setState({
-                    pageAl:data.songs[0].al
+                    pageData:data
                 })
             }
         })
-        
     }
 
     render() {
@@ -42,21 +65,22 @@ class PlayPage extends Component {
         let phone_h = document.documentElement.clientHeight/htmlFontSize;
         let PlayPage_window_h = phone_h - 1.859375;
 
-        let {picUrl,id} = this.state.pageAl || '' ;
-        let clickPlayObj={
-            picUrl:picUrl,
-            id:id
+        // 没数据走默认(空)
+        let clickPlayObj = {picUrl:'',id:this.state.id}
+        // 有数据走数据
+        if(this.state.pageData){
+            let {id,al:{picUrl}} = this.state.pageData.songs[0];
+            clickPlayObj.picUrl = picUrl;
+            clickPlayObj.num = this.state.num;
+            clickPlayObj.Onoff = this.state.Onoff;
+            clickPlayObj.whirl = this.whirl;        //旋转
         }
-        console.log(this.state.pageAl)
-        // 背景图和播放专辑图用同一张图片
-                    // let {playPageData:{bgImg,playMusicData,playMusicData:{musicImg}}}=this.state;
-                    // let {img} = url.location.state;
-
         
         //窗口的宽高，和背景图
         let styles={
             window:{width:'10rem',height:`${PlayPage_window_h}rem`},
-            bg:{width:'10rem',height:`${phone_h}rem`, background: `url(${picUrl}) no-repeat`, backgroundSize: `10rem ${phone_h}rem` }
+            bg:{width:'10rem',height:`${phone_h}rem`, background: `url(${clickPlayObj.picUrl}) no-repeat`, backgroundSize: `10rem ${phone_h}rem` },
+            bg1:{width:'10rem',height:`${phone_h}rem`,backgroundColor: 'rgba(0,0,0,0.7)' }
         }
         let h=document.documentElement.clientHeight*2/64;
         return ( 
@@ -66,17 +90,8 @@ class PlayPage extends Component {
                         {/* <ClickPlay playMusicData={playMusicData} {...url.location.state} whirl={this.whirl} /> */}
                         <ClickPlay {...clickPlayObj} />
                     </PlayMusic>
-                    <MusicTitle styles={ {color: '#fff'} } />
-                    <p>1</p>
-                    <p>2</p>
-                    <p>3</p>
-                    <p>4</p>
-                    <p>5</p>
-                    <p>1</p>
-                    <p>2</p>
-                    <p>3</p>
-                    <p>4</p>
-                    <p>5</p>
+                    <MusicTitle title={'精彩评论'} styles={ {color: '#fff'} } />
+                    <Comment id={this.state.id} />
                 </Window>
                 <Open_down />
             </div>
