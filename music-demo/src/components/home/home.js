@@ -5,7 +5,6 @@ import './home.css'
 
 class Home extends Component {
     render() { 
-        // let{homeData:{navData,topBarData},clickNav}=this.props;
         return ( 
             <div id="home" >
                 {this.props.children}

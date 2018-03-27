@@ -1,3 +1,6 @@
+主题
+要达到的效果
+执行步骤
 1、
   1.使用rem布局，用淘宝的lib-flexible。用less来写css。
   2.设计稿640*1136.根字体32px(lib-flexible自动计算)。转换插件设置64px。写css时直接走设计稿尺寸。
@@ -14,11 +17,11 @@
 	4.左右拖动两个盒子的宽要相同。里面的盒子高要比外面的盒子高。样式里加overflow-x: auto;
   overflow-y: hidden;
 	
-5、在同一个组件下创建木偶组件，木偶组件state和父组件state的关系
+5、在同一个组件下创建木偶组件，木偶组件和父组件state的关系
 6、头部固定定位
 7、title组件复用
 
-8、本地和网络的图片都可以统一使用以下格式。**音频也要require包一下**
+8、本地和网络的图片都可以统一使用以下格式。**本地音频也要require包一下**
 	this.state = { 
             footerDate:{
                 // footerLogo:require('../../../../img/footerLogo.png')
@@ -52,6 +55,5 @@ require里不能放变量。以下格式报错
 接收
     匹配的路由会成一个对象，对象里会有数据
 
-10、
-不要盲目相信网上的教程把请求数据放在componentDidMount里，componentDidMount是要渲染两次的。
-    componentWillMount拿到数据后只渲染一次
+
+

@@ -9,6 +9,8 @@
   position: absolute;
   top: 0;
   z-index: -2;
-  filter: blur(15px) sepia(50%);
-  background-position: 1.5625rem;
+  background-repeat: no-repeat;
+  background-color: paleturquoise;
+  filter: blur(15px);
+  background-size: 100%;
 }

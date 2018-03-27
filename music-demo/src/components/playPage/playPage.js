@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Link,Switch} from 'react-router-dom'
 import './playPage.css'
+import axios from 'axios'
 import Ajax from '../../js/ajax_1.0'
 
 import Window from '../window/window';
@@ -17,7 +18,8 @@ class PlayPage extends Component {
             pageData:'',
             num:0,
             Onoff:true,
-            id:props.match.params.id
+            id:props.match.params.id,
+            musicUrl:''
          }
     }
 
@@ -42,9 +44,18 @@ class PlayPage extends Component {
     }
 
     //获取数据
-    componentWillMount(){
+    componentDidMount(){
         let _this = this;
         let id = this.state.id;
+        // axios.get(`http://localhost:4000/music/url?id=${id}`)
+        // .then(function(data){
+        //     _this.setState({
+        //         musicUrl:data.data.data[0].url
+        //     })
+        // })
+        // .catch(function(error){
+        //     console.log(error);
+        // });
         Ajax({
             url:`http://localhost:4000/song/detail?ids=${id}`,
             data:{
@@ -66,7 +77,7 @@ class PlayPage extends Component {
         let PlayPage_window_h = phone_h - 1.859375;
 
         // 没数据走默认(空)
-        let clickPlayObj = {picUrl:'',id:this.state.id}
+        let clickPlayObj = {picUrl:'',id:this.state.id,}
         // 有数据走数据
         if(this.state.pageData){
             let {id,al:{picUrl}} = this.state.pageData.songs[0];
@@ -76,11 +87,11 @@ class PlayPage extends Component {
             clickPlayObj.whirl = this.whirl;        //旋转
         }
         
-        //窗口的宽高，和背景图
+        //窗口的宽高，和背景图  background: `url(${clickPlayObj.picUrl}) no-repeat`,
         let styles={
             window:{width:'10rem',height:`${PlayPage_window_h}rem`},
-            bg:{width:'10rem',height:`${phone_h}rem`, background: `url(${clickPlayObj.picUrl}) no-repeat`, backgroundSize: `10rem ${phone_h}rem` },
-            bg1:{width:'10rem',height:`${phone_h}rem`,backgroundColor: 'rgba(0,0,0,0.7)' }
+            bg:{ width:'10rem',height:`${phone_h}rem`,backgroundImage: `url(${clickPlayObj.picUrl})`,backgroundSize:`10rem ${phone_h}rem` },
+            bg1:{width:'10rem',height:`${phone_h}rem`,backgroundColor: 'rgba(0,0,0,0.5)' }
         }
         let h=document.documentElement.clientHeight*2/64;
         return ( 
@@ -88,7 +99,7 @@ class PlayPage extends Component {
                 <Window {...styles} >
                     <PlayMusic>
                         {/* <ClickPlay playMusicData={playMusicData} {...url.location.state} whirl={this.whirl} /> */}
-                        <ClickPlay {...clickPlayObj} />
+                        <ClickPlay {...clickPlayObj} musicUrl={this.state.musicUrl} />
                     </PlayMusic>
                     <MusicTitle title={'精彩评论'} styles={ {color: '#fff'} } />
                     <Comment id={this.state.id} />

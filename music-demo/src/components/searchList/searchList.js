@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-import './list.css'
+import './hotList.css'
 
-class List extends Component {
+class SearchList extends Component {
     render() { 
+        console.log(this.props,'数据')
         let {result} = this.props;
-        console.log(result)
+        
         let list = result ? result.map((e,i)=>{
             return <MList {...e} key={i} />
         }) : '';
@@ -21,17 +22,21 @@ class List extends Component {
 
 //li结构组件
 class MList extends Component {
+    toPlayPage = (id)=>{
+        
+    }
     render() {
-        let {name,id,song:{album,artists}} = this.props;
+        let {name,id,artists,album} = this.props;
+        //拼歌手
         let sginfo = artists.map((e,i) => e.name).join(' / ')
         return ( 
             /* Link to 把数据传给匹配/m/play/的页面 */
-            <Link to={{pathname:`/PlayPage/${id}`,state:this.props}}>
+            <Link to={{pathname:`/PlayPage/${id}`}} >
                 <li>
                     <p>{name}</p>
                     <span>
-                        <i className="icon" ></i>
-                        {sginfo + ' - ' + name}
+                        <i></i>
+                        {sginfo + ' - ' + album.name }          
                     </span>
                     <i id="newM_Playicon"></i>
                 </li>
@@ -40,4 +45,7 @@ class MList extends Component {
     }
 }
 
-export default List;
+export default SearchList;
+
+{/* <Link to={{pathname:`/PlayPage/${id}`}} >
+</Link> */}

@@ -22,6 +22,9 @@ import SearchPage from './searchPage/searchPage';
 //播放页
 import PlayPage from './playPage/playPage';
 
+//歌单列表
+import PlayList from './playlist/playlist';
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -137,13 +140,14 @@ class App extends Component {
             <div id="app">
                 <Switch>
                     {/* 播放页 */}
-                    <Route path="/PlayPage/:id" component={PlayPage} />
-
-                    <Route path='/' render={()=>{return(
+                    <Route  path="/PlayPage/:id" component={PlayPage} />
+                    <Route  path="/PlayList/:id" component={PlayList} />
+                    <Route  path='/' render={(url)=>{
+                        return(
                         // 主页
                         <Home>
                             <TopBab topBarData={topBarData} />
-                            <Nav navData={navData} clickNav={this.clickNav} />
+                            <Nav navData={navData} clickNav={this.clickNav} pathname={url.location.pathname} />
                             <Window {...{window:{marginTop: '3.25rem',width:'10rem',height:`${Home_window_h}rem`}}}>
                                 <Route exact path='/' render={()=> <Recommend recoListData={recoListData} newMusicData={newMusicData} footerData={footerData} /> } />
                                 <Route path='/Recommend' render={()=> <Recommend recoListData={recoListData} newMusicData={newMusicData} footerData={footerData} /> } />
@@ -154,8 +158,6 @@ class App extends Component {
                     ) 
                     }} />
                 </Switch>
-                
-                
             </div>
         );
     }

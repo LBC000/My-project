@@ -5,13 +5,13 @@ import Ajax from '../../js/ajax_1.0';
 
 class CommentList extends Component {
     render() {
-        let {content,user:{avatarUrl}} = this.props;
+        let {content,user:{avatarUrl,nickname}} = this.props;
         return (
             <div>
                 <div className="Comment_top" >
                     <div className="Comment_top_l" >
                         <i style={{ backgroundImage: `url(${avatarUrl})` }} ></i>
-                        <p>小木路</p>
+                        <p>{nickname}</p>
                         <span>2016年1月10日</span>
                     </div>
                     <div className="Comment_top_r" >

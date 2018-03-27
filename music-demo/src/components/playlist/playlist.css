@@ -1,0 +1,110 @@
+.playlist_top {
+  height: 5.421875rem;
+  width: 10rem;
+  padding-top: .859375rem;
+  box-sizing: border-box;
+  position: relative;
+  background-size: 5.421875rem 10rem;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.playlist_mask {
+  height: 5.421875rem;
+  width: 10rem;
+  filter: blur(20px);
+  background-size: 10rem 5.421875rem;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.playlist_top_img {
+  float: left;
+  width: 3.5625rem;
+  height: 3.5625rem;
+  position: absolute;
+  top: 50%;
+  left: .46875rem;
+  transform: translate(0, -50%);
+  background-color: yellowgreen;
+  background-size: 3.5625rem;
+}
+.playlist_top_img img {
+  width: 1.0625rem;
+  height: .53125rem;
+}
+.playlist_top_text {
+  width: 4.78125rem;
+  float: right;
+  position: absolute;
+  top: 50%;
+  right: .15625rem;
+  transform: translate(0, -50%);
+}
+.playlist_top_text p {
+  font-size: .5rem;
+  color: #fff;
+}
+.id_name {
+  position: relative;
+  margin-top: .546875rem;
+}
+.id_name span {
+  padding-left: 1.140625rem;
+  font-size: 0.4375rem;
+}
+.id_name i {
+  width: .9375rem;
+  height: .9375rem;
+  background-color: palevioletred;
+  border-radius: .9375rem;
+  display: inline-block;
+  position: absolute;
+  top: .125rem;
+  background-size: .9375rem;
+}
+.playlist_info {
+  color: #666;
+  padding-left: .46875rem;
+}
+.playlist_info p {
+  margin-top: .15625rem;
+}
+.playlist_info strong {
+  font-weight: normal;
+  font-size: .46875rem;
+}
+.playlist_info span {
+  font-size: .375rem;
+  display: inline-block;
+  border: .015625rem solid #e1e1e1;
+  height: .65625rem;
+  line-height: .65625rem;
+  padding: 0 .25rem;
+  margin-left: .265625rem;
+  border-radius: .46875rem;
+}
+.playlist_info .playlist_intr_1 {
+  vertical-align: top;
+}
+.playlist_info .playlist_intr_2 {
+  margin: 0;
+  padding: 0;
+  font-size: .40625rem;
+  line-height: .56875rem;
+  word-wrap: break-word;
+  width: 7.8rem;
+  margin-left: .265625rem;
+  border: 0;
+}
+.playlist_title {
+  margin-top: .3125rem;
+  height: .71875rem;
+}
+.playlist_title > p {
+  font-size: .40625rem;
+  color: #666;
+  background-color: #eeeff1;
+  line-height: .71875rem;
+  height: .7rem;
+  padding-left: .3125rem;
+}

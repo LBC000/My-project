@@ -7,6 +7,7 @@ class ClickPlay extends Component {
 
     //播放旋转
     clickPlay=()=>{
+        console.log(this.props)
         let {Onoff,whirl} = this.props; //解构父级传进来的数据
         let {myAudio,playIcon} = this.refs;      /* 获取元素 */
 
@@ -15,7 +16,6 @@ class ClickPlay extends Component {
 
         whirl();
         this.play();
-        console.log(567)
     }
 
     //播放
@@ -24,10 +24,8 @@ class ClickPlay extends Component {
         let {Onoff} = this.props; //解构父级传进来的数据
         console.log(Onoff)
         if(Onoff){
-            console.log(1)
             myAudio.play();
         }else{
-            console.log('0')
             myAudio.pause();
         }
     }
@@ -44,7 +42,6 @@ class ClickPlay extends Component {
     render() { 
         let {picUrl,id}=this.props; //解构父级传进来的数据
         let musicUrl = `http://music.163.com/song/media/outer/url?id=${id}.mp3`;
-        // http://music.163.com/song/media/outer/url?id=id.mp3
         
         return ( 
             <div className="clickPlayBox" onTouchStart={this.clickPlay} >
