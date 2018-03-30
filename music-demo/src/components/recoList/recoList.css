@@ -1,22 +1,32 @@
-#recoList {
+.recoList {
   position: relative;
   width: 10.9375rem;
   height: 11.453125rem;
 }
-#recoList li {
+.recoList li {
   float: left;
   width: 3.265625rem;
   height: 4.890625rem;
 }
-#recoList img {
+.recoList img {
   width: 3.265625rem;
   height: 3.28125rem;
 }
-#recoList p {
+.recoList p {
   font-size: .375rem;
   padding-left: .1875rem;
   display: inline-block;
 }
-#recoList .mgr {
+.recoList .mgr {
   margin-right: .103125rem;
+}
+.check_internet {
+  margin-top: 1.5625rem;
+  width: 10rem;
+  text-align: center;
+  color: #666;
+  font-size: .625rem;
+}
+.check_internet span {
+  color: skyblue;
 }

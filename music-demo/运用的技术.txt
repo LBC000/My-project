@@ -2,7 +2,7 @@
 要达到的效果
 执行步骤
 1、
-  1.使用rem布局，用淘宝的lib-flexible。用less来写css。
+  1.使用rem布局，用淘宝的lib-flexible。用less来写css。(好处：动态设置根字体大小，只要引用后就不用做其他设置，lib-flexible自动计算)
   2.设计稿640*1136.根字体32px(lib-flexible自动计算)。转换插件设置64px。写css时直接走设计稿尺寸。
 2、使用定时器时会使用回调函数，要注意存一个let _this=this;
 3、react定时器问题

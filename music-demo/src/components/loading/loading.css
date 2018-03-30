@@ -1,0 +1,9 @@
+#loading {
+  text-align: center;
+  width: 10rem;
+  margin-top: 1.5625rem;
+}
+#loading img {
+  width: 1.25rem;
+  height: 1.25rem;
+}

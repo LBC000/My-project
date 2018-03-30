@@ -22,7 +22,6 @@ class ClickPlay extends Component {
     play=()=>{
         let {myAudio} = this.refs;      /* 获取元素 */
         let {Onoff} = this.props; //解构父级传进来的数据
-        console.log(Onoff)
         if(Onoff){
             myAudio.play();
         }else{
@@ -31,8 +30,8 @@ class ClickPlay extends Component {
     }
 
 
-    //接收到新的props或者state后，进行渲染之前调用
-    componentDidUpdate(){
+    //完成渲染新的props或者state后调用，此时可以访问到新的DOM元素。
+    componentWillReceiveProps(){
         let {num,Onoff} = this.props; //解构父级传进来的数据
         let {clickPlay} = this.refs;      /* 获取元素 */
         clickPlay.style.transform = `rotate(${num}deg)`; /* 旋转元素 */

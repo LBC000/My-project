@@ -3,42 +3,53 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import './recoList.css'
 
 import MusicTitle from '../musicTitle/musicTitle';
-import Ajax from '../../js/ajax_1.0'
+import axios from 'axios'
+import Loading from '../loading/loading'
 
 class RecoList extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            recoListData:null
+            recoListData:null,
+            error:'',
+            loading:true
          };
     }
 
     componentDidMount(){
         let _this = this;
-        Ajax({
-            url:'http://localhost:4000/personalized',
-            data:{
-                // limit:30
-            },
-            success:function(data){
-                console.log(data)
-                _this.setState({
-                    recoListData:data
-                })
-            }
+        axios.get('http://localhost:4000/personalized')
+        .then((data)=>{
+            _this.setState({
+                recoListData:data,
+                loading:false
+            })
+        }).catch((error)=>{
+            console.log('数据出错')
+            _this.setState({
+                error,
+                loading:false
+            })
         })
     }
 
     render() { 
-        let {recoListData} = this.state;
-        recoListData ? recoListData.result.length = 6 :'';
-        let list= recoListData ? recoListData.result.map((e,i)=>{
-            return <List {...e} key={i} />
-        }) : '';
+        let list = '';
+        if(this.state.recoListData){
+            let {recoListData:{data:{result}}} = this.state;
+            result.length = 6;
+            list = result.map((e,i)=>{
+                return <List {...e} key={i} />
+            });
+        }else if(this.state.error){
+            list = <div className="check_internet" >请检查网络 </div>
+        }
+        //loading
+        let html = this.state.loading ? <Loading /> : list ;
         return ( 
-            <ul id="recoList">
+            <ul className="recoList">
                 <MusicTitle {...{title:'推荐歌单'}} />
-                {list}
+                {html}
             </ul>
          )
     }
@@ -47,12 +58,14 @@ class RecoList extends Component {
 //li结构组件
 class List extends Component {
     render() { 
-        let {name,picUrl}=this.props;
+        let {name,picUrl,id}=this.props;
         return ( 
-            <li className="mgr">
-                <img src={picUrl} alt=""/>
-                <p>{name}</p>
-            </li>
+            <Link to={`/PlayList/${id}`} >
+                <li className="mgr">
+                    <img src={picUrl} alt=""/>
+                    <p>{name}</p>
+                </li>
+            </Link>
          )
     }
 }

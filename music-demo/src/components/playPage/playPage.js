@@ -47,21 +47,13 @@ class PlayPage extends Component {
     componentDidMount(){
         let _this = this;
         let id = this.state.id;
-        // axios.get(`http://localhost:4000/music/url?id=${id}`)
-        // .then(function(data){
-        //     _this.setState({
-        //         musicUrl:data.data.data[0].url
-        //     })
-        // })
-        // .catch(function(error){
-        //     console.log(error);
-        // });
         Ajax({
             url:`http://localhost:4000/song/detail?ids=${id}`,
             data:{
                 // limit:30
             },
             success:function(data){
+                // console.log(JSON.stringify(data))
                 _this.setState({
                     pageData:data
                 })
@@ -80,11 +72,15 @@ class PlayPage extends Component {
         let clickPlayObj = {picUrl:'',id:this.state.id,}
         // 有数据走数据
         if(this.state.pageData){
-            let {id,al:{picUrl}} = this.state.pageData.songs[0];
-            clickPlayObj.picUrl = picUrl;
-            clickPlayObj.num = this.state.num;
-            clickPlayObj.Onoff = this.state.Onoff;
-            clickPlayObj.whirl = this.whirl;        //旋转
+            let {id,al:{picUrl},name,ar} = this.state.pageData.songs[0];
+            clickPlayObj = {
+                picUrl,
+                name,
+                arName:ar[0].name,
+                num:this.state.num,
+                Onoff:this.state.Onoff,
+                whirl:this.whirl            //旋转
+            }  
         }
         
         //窗口的宽高，和背景图  background: `url(${clickPlayObj.picUrl}) no-repeat`,
@@ -98,8 +94,14 @@ class PlayPage extends Component {
             <div>
                 <Window {...styles} >
                     <PlayMusic>
-                        {/* <ClickPlay playMusicData={playMusicData} {...url.location.state} whirl={this.whirl} /> */}
+                        <i className="playMusic_logo" ></i>
+                        <div className="PlayMusic_needle" >
+                            <img src={ require('../../img/needle.png') } />
+                        </div>
                         <ClickPlay {...clickPlayObj} musicUrl={this.state.musicUrl} />
+                        <div className="PlayMusic_song_info" >
+                            <p><strong>{clickPlayObj.name} - </strong><span>{clickPlayObj.arName}</span></p>
+                        </div>
                     </PlayMusic>
                     <MusicTitle title={'精彩评论'} styles={ {color: '#fff'} } />
                     <Comment id={this.state.id} />

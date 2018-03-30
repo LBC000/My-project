@@ -10,7 +10,7 @@ class Recommend extends Component {
     render() { 
         return ( 
             <div className="recommend" >
-                <RecoList recoListData={this.props.recoListData} />
+                <RecoList {...this.props} />
                 <NewMusic />
                 <RecoFooter footerData={this.props.footerData} />
             </div>

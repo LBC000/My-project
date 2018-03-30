@@ -1,5 +1,37 @@
 #playMusic {
-  height: 11rem;
+  height: 10rem;
   width: 10rem;
   padding-top: 1.96875rem;
+  position: relative;
+}
+.playMusic_logo {
+  width: 3.109375rem;
+  height: .515625rem;
+  background-image: url('../../img/logo.png');
+  background-size: 3.109375rem .515625rem;
+  display: inline-block;
+  position: absolute;
+  top: .3125rem;
+  left: .359375rem;
+}
+.PlayMusic_needle > img {
+  width: 2.625rem;
+  height: 3.8125rem;
+  position: absolute;
+  top: 0;
+  left: 4.21875rem;
+  z-index: 1;
+}
+.PlayMusic_song_info {
+  font-size: .4375rem;
+  text-align: center;
+  margin-top: .390625rem;
+}
+.PlayMusic_song_info strong {
+  font-weight: normal;
+  font-size: .46875rem;
+  color: #fff;
+}
+.PlayMusic_song_info span {
+  color: #9a9a9c;
 }

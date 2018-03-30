@@ -1,72 +1,55 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-import Ajax from '../../js/ajax_1.0';
 import './hot.css'
 import HotList from '../hotList/hotList';
 import axios from 'axios';
+import Loading from '../loading/loading';
 
 class Hot extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            hotData:null
+            hotData:null,
+            loading:true,
+            error:'',
          };
     }
 
     // //获取数据
     componentDidMount(){
         let _this = this;
-        let id = 2151784031;
-        /*
-            axios.get('/user?ID=1234')
-            .then(function(respone){
-                console.log(response);
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-
-            axios.post('/user',{
-                firstName:'friend',
-                lastName:'Flintstone'
-            })
-            .then(function(response){
-                console.log(response);
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-         */
-        //http://localhost:4000/top/playlist 歌单
-        axios.get('http://localhost:4000/music/url?id=33894312')
+        axios.get('http://localhost:4000/top/list?idx=1')
         .then(function(data){
-            console.log(data);
+            // console.log(JSON.stringify(data))
+            _this.setState({
+                hotData:data,
+                loading:false
+            });
         })
         .catch(function(error){
-            console.log(error);
+            _this.setState({
+                error,
+                loading:false
+            })
         });
-        
-        Ajax({
-            url:'http://localhost:4000/personalized/newsong',
-            data:{
-                // limit:30
-            },
-            success:function(data){
-                _this.setState({
-                    hotData:data
-                })
-            }
-        })
-        
     }
 
     render() { 
+        let list = '';
+        if(this.state.hotData){
+            let { data:{playlist:{tracks:result}} } = this.state.hotData;
+            list = <HotList result={result} />
+        }else if(this.state.error){
+            list = <div className="check_internet" >请检查网络 </div>
+        }
+        //Loading
+        let html = this.state.loading ? <Loading /> : list ;
         return ( 
             <div id="hot">
                 <div className="hot_bar" >
                     <img src={require('../../img/hot_bar.jpg')} />
                 </div>
-                <HotList {...this.state.hotData} />
+                {html}
             </div>
          )
     }

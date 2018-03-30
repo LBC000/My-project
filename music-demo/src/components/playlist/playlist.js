@@ -28,8 +28,8 @@ class PlayList extends Component {
     componentDidMount(){
         //2092321859
         let _this = this;
-        let id = this.state.id;
-        axios.get(`http://localhost:4000/playlist/detail?id=${2150668313}`)
+        let id = this.props.match.params.id;
+        axios.get(`http://localhost:4000/playlist/detail?id=${id}`)
         .then(function(data){
             console.log(data)
             _this.setState({
@@ -48,7 +48,6 @@ class PlayList extends Component {
             description = description.slice(0,58) + ' . . .' ;
             obj = {coverImgUrl,description,name,tags,result,nickname,avatarUrl,backgroundUrl};
         }
-        console.log(obj.result)
         return ( 
             <div>
                 <div className="playlist_mask" style={{ backgroundImage:`url(${obj.coverImgUrl})` }} ></div>

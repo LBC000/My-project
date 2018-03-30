@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import Ajax from '../../js/ajax_1.0';
+import axios from 'axios'
 import './searchPage.css'
 import SearchList from '../searchList/searchList';
 
+//热门搜索标签
 class Hot_tag extends Component {
     getVal = (ev)=>{
         this.props.hotVal(ev.target.innerText)
     }
     render() {
-        console.log(this.props)
         let {artists} = this.props;
         artists ? artists.length = 10 : '' ;
         let list = artists ? artists.map((e,i) =>{
@@ -49,22 +50,31 @@ class SearchResults extends Component {
     }
 }
 
-
-
+//搜索页
 class SearchPage extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             inputVal:null,
             hotSearchData:null,
-            SearchListData:null
+            SearchListData:null,
+            error:'',
+            loading:true
          };
     }
 
     //获取数据hotSearchData
     componentDidMount(){
         let _this = this;
-        let id = 2130055061;
+        // axios.get('http://localhost:4000/top/artists')
+        // .then((data)=>{
+        //     console.log(data)
+        //     _this.setState({
+        //         hotSearchData:data
+        //     })
+        // }).catch((error)=>{
+        //     console.log(error)
+        // })
         Ajax({
             url:'http://localhost:4000/top/artists',
             data:{

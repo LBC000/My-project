@@ -5,7 +5,6 @@ import './list.css'
 class List extends Component {
     render() { 
         let {result} = this.props;
-        console.log(result)
         let list = result ? result.map((e,i)=>{
             return <MList {...e} key={i} />
         }) : '';

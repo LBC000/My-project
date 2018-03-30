@@ -104,16 +104,6 @@ class App extends Component {
                     footerLogo:require('../img/footerLogo.png'),
                     bgImg:require('../img/recommand_bg_2x.png')
                 }
-            },
-            playPageData:{
-                // bgImg:require('../img/109951163168289079.webp'),
-                playMusicData:{
-                    musicUrl:require('../music_file/111.mp3'),
-                    musicImg:require('../img/109951163097632993.webp'),
-                    num:0,
-                    Onoff:true,
-                    display:'block'
-                }
             }
          }
     }
@@ -149,8 +139,8 @@ class App extends Component {
                             <TopBab topBarData={topBarData} />
                             <Nav navData={navData} clickNav={this.clickNav} pathname={url.location.pathname} />
                             <Window {...{window:{marginTop: '3.25rem',width:'10rem',height:`${Home_window_h}rem`}}}>
-                                <Route exact path='/' render={()=> <Recommend recoListData={recoListData} newMusicData={newMusicData} footerData={footerData} /> } />
-                                <Route path='/Recommend' render={()=> <Recommend recoListData={recoListData} newMusicData={newMusicData} footerData={footerData} /> } />
+                                <Route exact path='/' render={(url)=> <Recommend recoListData={recoListData} newMusicData={newMusicData} footerData={footerData} url={url} /> } />
+                                <Route path='/Recommend' render={(url)=> <Recommend recoListData={recoListData} newMusicData={newMusicData} footerData={footerData} url={url} /> } />
                                 <Route path='/Hot' component={Hot} />
                                 <Route path='/SearchPage' component={SearchPage} />
                             </Window>
