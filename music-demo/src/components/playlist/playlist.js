@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './playlist.css'
 import SearchList from '../searchList/searchList';
 import axios from 'axios'
+import Loading from '../loading/loading';
+import CheckInternet from '../checkInternet/checkInternet';
 
 
 const Tag = (props) =>{
@@ -20,7 +22,9 @@ class PlayList extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            playListData:''
+            playListData:'',
+            error:'',
+            loading:true
          }
     }
 
@@ -33,21 +37,32 @@ class PlayList extends Component {
         .then(function(data){
             console.log(data)
             _this.setState({
-                playListData:data
+                playListData:data,
+                loading:false
             })
         })
         .catch(function(error){
-            console.log(error);
+            _this.setState({
+                error,
+                loading:false
+            })
         });
     }
 
     render() { 
+        let list = '';
         let obj = {};
+        //判断有没有取到数据，没有数据显示检查网络
         if(this.state.playListData){
             let { data:{result:{coverImgUrl,description,name,tags,tracks:result,creator:{nickname,avatarUrl,backgroundUrl}}} } = this.state.playListData;
             description = description.slice(0,58) + ' . . .' ;
             obj = {coverImgUrl,description,name,tags,result,nickname,avatarUrl,backgroundUrl};
+            list = <SearchList result={obj.result} />;
+        }else if(this.state.error){
+            list = <CheckInternet />
         }
+        //loading 或 列表
+        let html = this.state.loading ? <Loading /> : list ;
         return ( 
             <div>
                 <div className="playlist_mask" style={{ backgroundImage:`url(${obj.coverImgUrl})` }} ></div>
@@ -76,7 +91,7 @@ class PlayList extends Component {
                     <p>歌曲列表</p>
                 </div>
                 <div className="playlist_list" >
-                    <SearchList result={obj.result} />
+                    {html}
                 </div>
             </div>
          )

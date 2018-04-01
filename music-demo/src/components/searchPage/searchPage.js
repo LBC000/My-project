@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-import Ajax from '../../js/ajax_1.0';
 import axios from 'axios'
+import Ajax from '../../js/ajax_1.0';
 import './searchPage.css'
 import SearchList from '../searchList/searchList';
+import Loading from '../loading/loading';
+import CheckInternet from '../checkInternet/checkInternet';
 
 //热门搜索标签
 class Hot_tag extends Component {
@@ -28,23 +30,41 @@ class Hot_tag extends Component {
 //热门搜索
 class Hot_search extends Component {
     render() {
+        let {loading,error} = this.props;
+        let list = '';
+        if(this.props.hotSearchData){
+            list = <Hot_tag hotVal={this.props.hotVal} {...this.props.hotSearchData} />;
+        }else if(error){
+            list = <CheckInternet />
+        }
+        
+        let html = loading ? <Loading /> : list;
         return (
             <div className='hot_search' >
                 <p>热门搜索</p>
-                <Hot_tag hotVal={this.props.hotVal} {...this.props.hotSearchData} />
+                {html}
             </div>
         );
     }
 }
 
-//最佳匹配
+//搜索结果
 class SearchResults extends Component {
     render() {
-        // console.log(this.props)
+        let {loading,error} = this.props;
+        console.log(loading,error,this.props.result)
+        let list = '';
+        if(this.props.result){
+            list = <SearchList result={this.props.result} />;
+        }else if(error){
+            list = <CheckInternet />
+        }
+        
+        let html = loading ? <Loading /> : list;
         return (
             <div className={`search_list`} >
                 <p>最佳匹配</p>
-                <SearchList result={this.props.result} />
+                {html}
             </div>
         );
     }
@@ -66,25 +86,17 @@ class SearchPage extends Component {
     //获取数据hotSearchData
     componentDidMount(){
         let _this = this;
-        // axios.get('http://localhost:4000/top/artists')
-        // .then((data)=>{
-        //     console.log(data)
-        //     _this.setState({
-        //         hotSearchData:data
-        //     })
-        // }).catch((error)=>{
-        //     console.log(error)
-        // })
-        Ajax({
-            url:'http://localhost:4000/top/artists',
-            data:{
-                // limit:30
-            },
-            success:function(data){
-                _this.setState({
-                    hotSearchData:data
-                })
-            }
+        axios.get('http://localhost:4000/top/artists')
+        .then((data)=>{
+            _this.setState({
+                hotSearchData:data.data,
+                loading:false
+            })
+        }).catch((error)=>{
+            _this.setState({
+                error,
+                loading:false
+            })
         })
     }
 
@@ -95,20 +107,36 @@ class SearchPage extends Component {
             SearchListData:''
         })
         let _this = this;
+        //按回车的时候才加载loading
         if(ev.keyCode ==13){
-            console.log(ev.target.value)
-            Ajax({
-                url:`http://localhost:4000/search?keywords=${ev.target.value}`,
-                data:{
-                    // limit:30
-                },
-                success:function(data){
-                    console.log(data)
-                    _this.setState({
-                        SearchListData:data
-                    })
-                }
+            this.setState({
+                loading:true
             })
+            axios.get(`http://localhost:4000/search?keywords=${ev.target.value}`)
+            .then((data)=>{
+                _this.setState({
+                    SearchListData:data.data,
+                    loading:false
+                })
+            }).catch((error)=>{
+                _this.setState({
+                    error,
+                    loading:false
+                })
+            })
+
+            // Ajax({
+            //     url:`http://localhost:4000/search?keywords=${ev.target.value}`,
+            //     data:{
+            //         // limit:30
+            //     },
+            //     success:function(data){
+            //         console.log(data)
+            //         _this.setState({
+            //             SearchListData:data
+            //         })
+            //     }
+            // })
         }
     }
 
@@ -117,18 +145,20 @@ class SearchPage extends Component {
         let _this = this;
         this.refs.input.value = val;
         this.setState({
-            inputVal:val
+            inputVal:val,
+            loading:true
         })
-        Ajax({
-            url:`http://localhost:4000/search?keywords=${val}`,
-            data:{
-                // limit:30
-            },
-            success:function(data){
-                _this.setState({
-                    SearchListData:data
-                })
-            }
+        axios.get(`http://localhost:4000/search?keywords=${val}`)
+        .then((data)=>{
+            _this.setState({
+                SearchListData:data.data,
+                loading:false
+            })
+        }).catch((error)=>{
+            _this.setState({
+                error,
+                loading:false
+            })
         })
     }
 
@@ -136,8 +166,7 @@ class SearchPage extends Component {
     reset = ()=>{
         this.refs.input.value = '';
         this.setState({
-            inputVal:this.refs.input.value,
-            SearchListData:null               //**同时把搜索列表的数据清空
+            inputVal:this.refs.input.value
         })
     }
 
@@ -149,7 +178,7 @@ class SearchPage extends Component {
         console.log(songs)
         //清空
         let classReset = this.state.inputVal ? 'reset' :'';
-        let html = this.state.inputVal ? <SearchResults result={songs} /> : <Hot_search {...this.state} hotVal={this.hotVal} /> ;
+        let html = this.state.inputVal ? <SearchResults result={songs} {...this.state} /> : <Hot_search {...this.state} hotVal={this.hotVal} /> ;
         return (
             <div>
                 <div className="search_top" >
@@ -157,8 +186,6 @@ class SearchPage extends Component {
                     <i className={classReset} onTouchStart={this.reset} ></i>
                 </div>
                 {html}
-                
-                
             </div>
         );
     }

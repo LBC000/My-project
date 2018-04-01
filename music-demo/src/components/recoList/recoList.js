@@ -5,6 +5,7 @@ import './recoList.css'
 import MusicTitle from '../musicTitle/musicTitle';
 import axios from 'axios'
 import Loading from '../loading/loading'
+import CheckInternet from '../checkInternet/checkInternet';
 
 class RecoList extends Component {
     constructor(props) {
@@ -42,7 +43,7 @@ class RecoList extends Component {
                 return <List {...e} key={i} />
             });
         }else if(this.state.error){
-            list = <div className="check_internet" >请检查网络 </div>
+            list = <CheckInternet />
         }
         //loading
         let html = this.state.loading ? <Loading /> : list ;
