@@ -5,6 +5,10 @@ import HotList from '../hotList/hotList';
 import axios from 'axios';
 import Loading from '../loading/loading';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../../actionCeators/actionCeators';
+
 class Hot extends Component {
     constructor(props) {
         super(props);
@@ -13,6 +17,9 @@ class Hot extends Component {
             loading:true,
             error:'',
          };
+    }
+    componentWillMount() {
+        // this.props.actions.upLoadingTrue();
     }
 
     // //获取数据
@@ -55,4 +62,10 @@ class Hot extends Component {
     }
 }
  
-export default Hot;
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(actions, dispatch),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Hot);

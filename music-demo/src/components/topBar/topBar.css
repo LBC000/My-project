@@ -11,11 +11,11 @@
 }
 #topBar #log {
   float: left;
-  margin: 0.5625rem 0 0 0.296875rem;
+  margin: -0.0234375rem 0 0 0.296875rem;
 }
 #topBar #log img {
-  width: 4.4375rem;
-  height: 0.78125rem;
+  width: 5.3125rem;
+  height: 1.953125rem;
   display: block;
 }
 #topBar #down {
